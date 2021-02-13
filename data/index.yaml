@@ -1,0 +1,18 @@
+---
+ name: "a drop of golden sun"
+ pi: 3.14159
+ xmas: "md:md/prova.md"
+ french-hens: 3
+ calling-birds:
+   - huey
+   - dewey
+   - louie
+   - fred
+ xmas-fifth-day:
+   calling-birds: four
+   french-hens: "php:plugins/time.php"
+   golden-rings: 5
+   partridges:
+     count: 1
+     location: "a pear tree"
+   turtle-doves: two
