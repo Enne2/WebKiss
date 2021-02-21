@@ -5,11 +5,9 @@ class Template {
 	static $cache_path = 'cache/';
 	static $cache_enabled = FALSE;
 
-	static function view($file, $data = array(), $script = null) {
+	static function view($file, $data = array()) {
 		$cached_file = self::cache($file);
 	    extract($data, EXTR_SKIP);
-		if($script)
-			require $script;
 	   	ob_start();
 	   	require $cached_file;
 	   	return ob_get_clean();

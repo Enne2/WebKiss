@@ -1,3 +1,3 @@
 <?php
-$time = time();
+$parsed['time'] = time();
 ?>

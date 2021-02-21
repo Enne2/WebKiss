@@ -7,5 +7,8 @@ $template_path  = 'templates/';
 $data_path = 'data/';
 $script_path = 'scripts/';
 
-file_put_contents("public/index.html", Template::view($template_path.'index.html', Compiler::compile($data_path."index.yaml"), $script_path."index.php"));
-
+$compiler = new Compiler();
+#file_put_contents("public/index.html", Template::view($template_path.'index.html', Compiler::compile($data_path."index.yaml"), $script_path."index.php"));
+$compiler->add_step("Home", 'public/index.html', $template_path.'index.html', $data_path."index.yaml",$script_path."index.php");
+$compiler->compile();
+echo "Compilation terminated\n";
