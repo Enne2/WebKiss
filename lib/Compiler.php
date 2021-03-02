@@ -6,8 +6,16 @@ class Compiler
     public function compile(){
         foreach($this->steps as $name => $val){
         // Parse, fill and return YAML data files
-            $parsed = yaml_parse(file_get_contents($val[2]));
-            $parsed = $this->parse_array($parsed);
+            // Check if data files ae more than one, if yes concatenate them in a single array
+            $parsed = array();
+            if(is_array($val["data"]))
+                foreach($val["data"] as $data){
+                    $data = yaml_parse(file_get_contents($data));
+                    $data = $this->parse_array($data);
+                    $parsed = array_merge($parsed, $data);
+                }
+            else
+                $parsed = $this->parse_array(yaml_parse(file_get_contents($val["data"])));
             $args = $val[4];
             if($val[3]){
                 require $val[3];
@@ -28,7 +36,7 @@ class Compiler
         
     }
     public function add_step($name, $output, $template, $data, $script = null, $args = null){
-        $this->steps[$name] = array($output, $template, $data, $script, $args);
+        $this->steps[$name] = array($output, $template, "data"=>$data, $script, $args);
     }
 
 }
